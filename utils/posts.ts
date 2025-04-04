@@ -11,9 +11,14 @@ export class PostService {
   }
 
   async getPosts() {
-    const res = await fetch('http://jsonplaceholder.typicode.com/posts');
-    const data: Post[] = await res.json();
-    this.posts = data;
+    try {
+      const res = await fetch('http://jsonplaceholder.typicode.com/posts');
+      const data: Post[] = await res.json();
+      this.posts = data;
+    } catch (error) {
+      console.log('Error fetching posts:', error);
+      this.posts = [];
+    }
   }
 
   getAllPosts() {
