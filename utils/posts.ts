@@ -11,3 +11,10 @@ export async function getPostComments(postId: number) {
   const data: Comment[] = await res.json();
   return data;
 }
+
+export function filterPosts(posts: Post[], query: string) {
+  return posts.filter((p) => {
+    const { title, body } = p;
+    return title.toLowerCase().includes(query) || body.toLowerCase().includes(query);
+  });
+}
