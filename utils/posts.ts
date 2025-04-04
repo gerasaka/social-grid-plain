@@ -1,4 +1,4 @@
-import { Comment, Post } from './posts.dto';
+import { Post } from './types';
 
 export class PostService {
   private posts: Post[] = [];
@@ -18,12 +18,6 @@ export class PostService {
 
   getAllPosts() {
     return this.posts;
-  }
-
-  async getPostComments(postId: number) {
-    const res = await fetch(`http://jsonplaceholder.typicode.com/posts/${postId}/comments`);
-    const data: Comment[] = await res.json();
-    return data;
   }
 
   filterPosts(query: string) {
