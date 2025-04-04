@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report</title>
+  </head>
+  <body>
+    <h1>Report</h1>
+
+    <section id="rerum-count">
+      <h2>Post containing "rerum"</h2>
+      <p id="count"></p>
+    </section>
+
+    <section id="user-posts">
+      <h2>Post count per rser</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Post Count</th>
+          </tr>
+        </thead>
+        <tbody id="user-table-body"></tbody>
+      </table>
+    </section>
+
+    <script type="module" src="/report/report.ts"></script>
+  </body>
+</html>
