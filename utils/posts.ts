@@ -1,28 +1,19 @@
 import { Comment, Post } from './posts.dto';
 
-export async function getPosts() {}
-
-export async function getPostComments(postId: number) {
-  const res = await fetch(`http://jsonplaceholder.typicode.com/posts/${postId}/comments`);
-  const data: Comment[] = await res.json();
-  return data;
-}
-
-export function filterPosts(posts: Post[], query: string) {}
-
 export class PostService {
   private posts: Post[] = [];
+  private constructor() {} // Private constructor to prevent instantiation
 
-  constructor() {
-    this.init();
+  static async init() {
+    const instance = new PostService();
+    await instance.getPosts();
+    return instance;
   }
 
-  async init() {
+  async getPosts() {
     const res = await fetch('http://jsonplaceholder.typicode.com/posts');
     const data: Post[] = await res.json();
     this.posts = data;
-
-    return data;
   }
 
   getAllPosts() {

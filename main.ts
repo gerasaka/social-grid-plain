@@ -4,7 +4,7 @@ import './components/comment-modal';
 import { CommentModal } from './components/comment-modal';
 import { createPostItem } from './components/post-item';
 
-const postService = new PostService();
+const postService = await PostService.init();
 
 export function renderPosts(posts: Post[]) {
   const container = document.getElementById('post-container')!;
