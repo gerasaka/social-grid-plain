@@ -1,8 +1,10 @@
-import { filterPosts, getPosts } from './utils/posts';
+import { PostService } from './utils/posts';
 import { Post } from './utils/posts.dto';
 import './components/comment-modal';
 import { CommentModal } from './components/comment-modal';
 import { createPostItem } from './components/post-item';
+
+const postService = new PostService();
 
 export function renderPosts(posts: Post[]) {
   const container = document.getElementById('post-container')!;
@@ -17,20 +19,20 @@ export function renderPosts(posts: Post[]) {
   }
 }
 
-function handleSearch(posts: Post[]) {
+function handleSearch() {
   document.getElementById('search')!.addEventListener('input', (e) => {
     const query = (e.target as HTMLInputElement).value.toLowerCase();
-    const filteredPosts = filterPosts(posts, query);
+    const filteredPosts = postService.filterPosts(query);
 
     renderPosts(filteredPosts);
   });
 }
 
-async function init() {
-  const posts = await getPosts();
+function init() {
+  const posts = postService.getAllPosts();
 
   renderPosts(posts);
-  handleSearch(posts);
+  handleSearch();
 
   const commentModal = document.createElement('comment-modal') as CommentModal;
   document.body.appendChild(commentModal);
