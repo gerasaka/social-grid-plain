@@ -1,24 +1,30 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { getPosts } from './utils/posts';
+import { Post } from './utils/posts.dto';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+function createPostRow(post: Post) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${post.id}</td>
+    <td>${post.title}</td>
+    <td>${post.body}</td>
+  `;
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  return tr;
+}
+
+async function renderPosts() {
+  const container = document.getElementById('post-container')!;
+  container.innerHTML = '';
+
+  const posts = await getPosts();
+
+  if (posts.length === 0) container.innerHTML = '<tr><td colspan="3">No posts available.</td></tr>';
+  else {
+    posts.forEach((post) => {
+      const row = createPostRow(post);
+      container.appendChild(row);
+    });
+  }
+}
+
+renderPosts();
