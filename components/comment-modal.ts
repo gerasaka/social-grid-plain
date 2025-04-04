@@ -1,4 +1,4 @@
-import { getPostComments } from '../utils/posts.js';
+import { getPostComments } from '../utils/comments';
 
 export class CommentModal extends HTMLElement {
   dialog: HTMLDialogElement;

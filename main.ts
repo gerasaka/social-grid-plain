@@ -1,5 +1,5 @@
 import { PostService } from './utils/posts';
-import { Post } from './utils/posts.dto';
+import { Post } from './utils/types';
 import './components/comment-modal';
 import { CommentModal } from './components/comment-modal';
 import { createPostItem } from './components/post-item';

@@ -1,4 +1,4 @@
-import { Post } from '../utils/posts.dto';
+import { Post } from '../utils/types';
 import { CommentModal } from './comment-modal';
 
 export function createPostItem(post: Post): HTMLTableRowElement {
