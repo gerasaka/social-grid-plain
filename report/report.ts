@@ -1,27 +1,22 @@
-import { getPosts } from '../utils/posts.js';
+import { PostService } from '../utils/posts.js';
 
-const countEl = document.getElementById('keyword-count')!;
-const tbody = document.getElementById('user-table')!;
+const postService = await PostService.init();
+const KEYWORD = 'rerum';
 
-async function generateReport() {
-  const posts = await getPosts();
+async function init() {
+  const keywordContainer = document.getElementById('keyword-count')!;
+  const keywordCount = postService.countKeyword(KEYWORD);
+  keywordContainer.querySelector('h2')!.textContent = `Posts containing "${KEYWORD}"`;
+  keywordContainer.querySelector('p')!.textContent = `Total: ${keywordCount} posts`;
 
-  const rerumCount = posts.filter((post) => post.body.toLowerCase().includes('rerum')).length;
-  countEl.textContent = `Total: ${rerumCount} posts`;
+  const userTable = document.getElementById('user-table')!;
+  const userMap = postService.countPostsByUser();
 
-  const userMap = new Map();
-  posts.forEach(({ userId }) => {
-    userMap.set(userId, (userMap.get(userId) || 0) + 1);
-  });
-
-  for (const [userId, count] of userMap.entries()) {
+  for (const userId in userMap) {
     const row = document.createElement('tr');
-    row.innerHTML = `<td>${userId}</td><td>${count}</td>`;
-    tbody.appendChild(row);
+    row.innerHTML = `<td>${userId}</td><td>${userMap[userId]}</td>`;
+    userTable.appendChild(row);
   }
 }
 
-const navbar = document.createElement('nav-bar');
-document.body.prepend(navbar);
-
-generateReport();
+init();
