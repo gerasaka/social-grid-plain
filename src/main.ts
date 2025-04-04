@@ -1,5 +1,7 @@
-import { getPostComments, getPosts } from './utils/posts';
+import { getPosts } from './utils/posts';
 import { Post } from './utils/posts.dto';
+import './components/comment-modal';
+import { CommentModal } from './components/comment-modal';
 
 let allPosts: Post[] = [];
 
@@ -15,7 +17,7 @@ function createPostRow(post: Post) {
   `;
 
   tr.querySelector('.show-comments')!.addEventListener('click', () => {
-    showComments(post.id);
+    commentModal.open(post.id);
   });
 
   if (post.body.includes('rerum')) tr.classList.add('bg-yellow-100');
@@ -54,18 +56,7 @@ document.getElementById('search')!.addEventListener('input', (e) => {
   renderPosts(filteredPosts);
 });
 
+const commentModal = document.createElement('comment-modal') as CommentModal;
+document.body.appendChild(commentModal);
+
 init();
-
-const dialog = document.getElementById('comment-modal') as HTMLDialogElement;
-const commentList = document.getElementById('comment-list')!;
-const closeDialog = document.getElementById('close-modal')!;
-
-async function showComments(postId: number) {
-  const comments = await getPostComments(postId);
-  commentList.innerHTML = comments
-    .map((c) => `<li><strong>${c.email}:</strong> ${c.body}</li>`)
-    .join('');
-  dialog.showModal();
-}
-
-closeDialog.addEventListener('click', () => dialog.close());
