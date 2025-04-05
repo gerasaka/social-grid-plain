@@ -4,10 +4,17 @@ const postService = await PostService.init();
 const KEYWORD = 'rerum';
 
 export function renderKeywordCount(keyword: string) {
-  const keywordContainer = document.getElementById('keyword-count')!;
   const keywordCount = postService.countKeyword(keyword);
-  keywordContainer.querySelector('h2')!.textContent = `Posts containing "${keyword}"`;
-  keywordContainer.querySelector('p')!.textContent = `Total: ${keywordCount} posts`;
+
+  const keywordEl = document.getElementById('keyword')!;
+  const keywordCountEl = document.getElementById('keyword-count')!;
+  const usersEl = document.getElementById('users')!;
+  const postsEl = document.getElementById('posts')!;
+
+  keywordEl.textContent = keyword;
+  keywordCountEl.textContent = `${keywordCount}`;
+  usersEl.textContent = `${postService.getAllPosts().length / 10}`;
+  postsEl.textContent = `${postService.getAllPosts().length}`;
 }
 
 export function renderUserTable(userMap: Record<string, number>) {
@@ -16,7 +23,10 @@ export function renderUserTable(userMap: Record<string, number>) {
 
   for (const userId in userMap) {
     const row = document.createElement('tr');
-    row.innerHTML = `<td>${userId}</td><td>${userMap[userId]}</td>`;
+    row.innerHTML = `<td class="text-center">${userId}</td><td class="text-center">${userMap[userId]}</td>`;
+
+    if (Number(userId) % 2 === 0) row.classList.add('bg-gray-100');
+
     userTable.appendChild(row);
   }
 }
