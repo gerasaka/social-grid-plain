@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body class="bg-sky-50">
+    <main class="p-8 max-w-5xl mx-auto">
+      <h1 class="text-3xl font-bold text-sky-800">Posts</h1>
+
+      <section class="flex justify-between items-center mt-8 mb-4">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search by keyword..."
+          class="p-2 bg-white border border-sky-200 rounded-md"
+        />
+        <div class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 512 512"
+            class="text-sky-800"
+          >
+            <path
+              fill="currentColor"
+              d="M104 496H72a24 24 0 0 1-24-24V328a24 24 0 0 1 24-24h32a24 24 0 0 1 24 24v144a24 24 0 0 1-24 24m224 0h-32a24 24 0 0 1-24-24V232a24 24 0 0 1 24-24h32a24 24 0 0 1 24 24v240a24 24 0 0 1-24 24m112 0h-32a24 24 0 0 1-24-24V120a24 24 0 0 1 24-24h32a24 24 0 0 1 24 24v352a24 24 0 0 1-24 24m-224 0h-32a24 24 0 0 1-24-24V40a24 24 0 0 1 24-24h32a24 24 0 0 1 24 24v432a24 24 0 0 1-24 24"
+            />
+          </svg>
+          <a href="/report/" class="hover:text-sky-600 transition-colors me-2">
+            <span class="inline md:hidden">Report</span>
+            <span class="hidden md:inline">See report</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="overflow-x-auto rounded-lg shadow-sm">
+        <table class="min-w-full table-auto bg-white">
+          <thead class="text-sky-800 bg-sky-100">
+            <tr>
+              <th class="min-w-16 px-4 py-2">ID</th>
+              <th class="min-w-60 px-4 py-2">Title</th>
+              <th class="min-w-96 px-4 py-2">Body</th>
+              <th class="px-4 py-2"></th>
+            </tr>
+          </thead>
+          <tbody id="post-container"></tbody>
+        </table>
+      </section>
+
+      <div class="mt-8 flex items-center gap-2">
+        <div class="bg-yellow-100 h-5 w-5 border border-sky-800"></div>
+        <span class="text-sm">: Post that contain keyword "rerum"</span>
+      </div>
+    </main>
+
+    <script src="/posts/index.ts" type="module"></script>
+  </body>
+</html>

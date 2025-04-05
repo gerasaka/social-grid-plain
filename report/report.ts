@@ -20,13 +20,10 @@ export function renderUserTable(userMap: Record<string, number>) {
     userTable.appendChild(row);
   }
 }
+
 export async function init() {
   const userMap = postService.countPostsByUser();
 
   renderKeywordCount(KEYWORD);
   renderUserTable(userMap);
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-  init();
-});

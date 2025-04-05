@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { MOCK_POSTS } from './sample-response/posts';
-import { renderPosts } from '../main';
+import { renderPosts } from '../posts/posts';
 
 vi.mock('../utils/posts', () => ({
   PostService: {

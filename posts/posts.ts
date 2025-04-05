@@ -1,8 +1,8 @@
-import { PostService } from './utils/posts';
-import { Post } from './utils/types';
-import './components/comment-modal';
-import { CommentModal } from './components/comment-modal';
-import { createPostItem } from './components/post-item';
+import { PostService } from '../utils/posts';
+import { Post } from '../utils/types';
+import '../components/comment-modal';
+import { CommentModal } from '../components/comment-modal';
+import { createPostItem } from '../components/post-item';
 
 const postService = await PostService.init();
 
@@ -28,7 +28,7 @@ function handleSearch() {
   });
 }
 
-function init() {
+export function init() {
   const posts = postService.getAllPosts();
 
   renderPosts(posts);
@@ -37,7 +37,3 @@ function init() {
   const commentModal = document.createElement('comment-modal') as CommentModal;
   document.body.appendChild(commentModal);
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-  init();
-});
