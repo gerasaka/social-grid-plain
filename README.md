@@ -4,6 +4,7 @@ A simple web application to fetch posts, filter them, and generate a report by k
 
 - [x] Fetch and display posts in a table
 - [x] Keyword search with live filtering
+- [x] Show post comments
 - Report page showing:
   - [x] Total posts matching a specific keyword
   - [x] Number of posts per user
@@ -13,6 +14,7 @@ A simple web application to fetch posts, filter them, and generate a report by k
 - TypeScript
 - Vite
 - Vitest (unit testing)
+- TailwindCSS
 
 ## Getting Started
 
