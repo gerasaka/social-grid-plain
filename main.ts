@@ -38,4 +38,6 @@ function init() {
   document.body.appendChild(commentModal);
 }
 
-init();
+window.addEventListener('DOMContentLoaded', () => {
+  init();
+});
