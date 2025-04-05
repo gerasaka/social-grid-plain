@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body class="bg-sky-50">
+    <main class="p-8 max-w-5xl mx-auto">
+      <div class="flex gap-2 items-center mb-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 512 512"
+          class="text-sky-800"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="48"
+            d="M244 400L100 256l144-144M120 256h292"
+          />
+        </svg>
+        <a href="/posts/" class="hover:text-sky-600">Back to all post</a>
+      </div>
+
+      <h1 class="text-3xl font-bold text-sky-800">Report</h1>
+
+      <div class="flex flex-col gap-8 mt-8">
+        <section id="stats" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="border border-sky-200 rounded-lg p-4 w-full flex flex-col justify-between">
+            <span>
+              <h3>Post containing keyword</h3>
+              <p class="text-sky-800 font-bold mb-4" id="keyword">"rerum"</p>
+            </span>
+            <div class="flex justify-end items-end">
+              <span id="keyword-count" class="text-6xl text-sky-500"></span>
+              <span class="text-xs text-gray-400 ms-2 mb-2">post(s)</span>
+            </div>
+          </div>
+          <div class="border border-sky-200 rounded-lg p-4 w-full flex flex-col justify-between">
+            <h3>Total Users</h3>
+            <div class="flex justify-end items-end">
+              <span id="users" class="text-6xl text-sky-500"></span>
+              <span class="text-xs text-gray-400 ms-2 mb-2">user(s)</span>
+            </div>
+          </div>
+          <div class="border border-sky-200 rounded-lg p-4 w-full flex flex-col justify-between">
+            <h3>Total posts</h3>
+            <div class="flex justify-end items-end">
+              <span id="posts" class="text-6xl text-sky-500"></span>
+              <span class="text-xs text-gray-400 ms-2 mb-2">post(s)</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="overflow-x-auto rounded-lg shadow-sm">
+          <table class="min-w-full table-auto bg-white">
+            <thead class="text-sky-800 bg-sky-100">
+              <tr>
+                <th class="min-w-16 px-4 py-2">User ID</th>
+                <th class="min-w-16 px-4 py-2">Post Count</th>
+              </tr>
+            </thead>
+            <tbody id="user-table"></tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="/report/index.ts"></script>
+  </body>
+</html>
