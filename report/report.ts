@@ -13,7 +13,7 @@ export function renderKeywordCount(keyword: string) {
 
   keywordEl.textContent = keyword;
   keywordCountEl.textContent = `${keywordCount}`;
-  usersEl.textContent = `${postService.getAllPosts().length / 10}`;
+  usersEl.textContent = `${Object.keys(postService.countPostsByUser()).length}`;
   postsEl.textContent = `${postService.getAllPosts().length}`;
 }
 

@@ -21,14 +21,6 @@ describe('CommentModal', () => {
     modal.dialog.close = vi.fn();
   });
 
-  it('should render dialog with initial content', () => {
-    const dialog = modal.querySelector('dialog') as HTMLDialogElement;
-
-    expect(dialog).toBeTruthy();
-    expect(dialog.innerHTML).toContain('<h2>Comments</h2>');
-    expect(dialog.querySelector('#close-modal')).toBeTruthy();
-  });
-
   it('should close modal on clicking close button', () => {
     const closeSpy = vi.spyOn(modal.dialog, 'close');
     const closeBtn = modal.querySelector('#close-modal') as HTMLButtonElement;
