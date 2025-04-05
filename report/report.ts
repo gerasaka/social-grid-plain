@@ -3,14 +3,16 @@ import { PostService } from '../utils/posts.js';
 const postService = await PostService.init();
 const KEYWORD = 'rerum';
 
-async function init() {
+export function renderKeywordCount(keyword: string) {
   const keywordContainer = document.getElementById('keyword-count')!;
-  const keywordCount = postService.countKeyword(KEYWORD);
-  keywordContainer.querySelector('h2')!.textContent = `Posts containing "${KEYWORD}"`;
+  const keywordCount = postService.countKeyword(keyword);
+  keywordContainer.querySelector('h2')!.textContent = `Posts containing "${keyword}"`;
   keywordContainer.querySelector('p')!.textContent = `Total: ${keywordCount} posts`;
+}
 
+export function renderUserTable(userMap: Record<string, number>) {
   const userTable = document.getElementById('user-table')!;
-  const userMap = postService.countPostsByUser();
+  userTable.innerHTML = '';
 
   for (const userId in userMap) {
     const row = document.createElement('tr');
@@ -18,5 +20,13 @@ async function init() {
     userTable.appendChild(row);
   }
 }
+export async function init() {
+  const userMap = postService.countPostsByUser();
 
-init();
+  renderKeywordCount(KEYWORD);
+  renderUserTable(userMap);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  init();
+});
